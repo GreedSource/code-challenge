@@ -31,3 +31,5 @@ rails server
 
 * Ruta principal  
 http://localhost:3000
+
+## El archivo a importar se encuentra dentro de la raiz del proyecto con el nombre *Resource - Code challenge.xlsx*
