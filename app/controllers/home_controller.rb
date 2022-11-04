@@ -6,7 +6,9 @@ class HomeController < ApplicationController
   def uploadFile
     payload = Roo::Spreadsheet.open(params['file'].tempfile)
     payload = payload.map {|a|  payload.first.zip(a).to_h unless a == payload.first }.compact
-    @count = payload.count
+
+    @count    = payload.count
+    @incomes  = 0
   
     payload.each() do |row|
 
@@ -19,7 +21,8 @@ class HomeController < ApplicationController
       if !vendor = Vendor.where(name: row['Nombre del Vendedor']).first
         vendor = Vendor.create(name: row['Nombre del Vendedor'], address: row['Dirección del vendedor'])
       end
-      Sale.create(client_id: client.id, vendor_id: vendor.id, product_id: product.id, quantity: row['Numero de piezas'])
+      sale = Sale.create(client_id: client.id, vendor_id: vendor.id, product_id: product.id, quantity: row['Numero de piezas'])
+      @incomes += sale.quantity * product.price
     end
     render 'home/index'
   end

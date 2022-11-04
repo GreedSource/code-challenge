@@ -8,6 +8,8 @@
   <% if defined?(@count)%>
     <div class="alert alert-success" role="alert">
       Se han importado <%= @count %> registros
+      <br>
+      El valor total de ingresos es <%= number_to_currency(@incomes) %>
     </div>
   <% end %>
   <div class="card">
