@@ -1,0 +1,27 @@
+<!-- As a heading -->
+<nav class="navbar bg-info ">
+  <div class="container">
+    <span class="navbar-brand mb-0 h1 text-light">Orve Code Challenge</span>
+  </div>
+</nav>
+<div class='container py-3'>
+  <% if defined?(@count)%>
+    <div class="alert alert-success" role="alert">
+      Se han importado <%= @count %> registros
+    </div>
+  <% end %>
+  <div class="card">
+    <div class="card-header">
+      <label for="file" class="form-label">Selecciona el archivo a subir</label>
+    </div>
+    <div class="card-body">
+      <form action='/' method='post' enctype='multipart/form-data'>
+        <%= token_tag %>
+        <div class="mb-3">
+          <input class="form-control" type="file" id="file" name='file'>
+        </div>
+        <button class='btn btn-primary btn-large' type='submit'>Subir archivo</button>
+      </form>
+    </div>
+  </div>
+</div>
